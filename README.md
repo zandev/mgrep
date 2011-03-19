@@ -46,6 +46,8 @@ The last idea is to provide a simple scripting language:
 
 Here, 
 
-__...__ is a shortcut for <strong>*^.*$</strong>
+__...__ is a shortcut for
+
+    *^.*$
 
 __?__, __+__, __*__ and __!__ in front of the line have the same meaning as in regular expressions, but they match against new lines.
