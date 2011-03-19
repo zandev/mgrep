@@ -19,7 +19,7 @@ One could give a block body constraint:
 
 Will match the given text block only if one of it's inners lines match against "^.*Unknow (media|mime) type.*$"
 
-Part of the auto-anchoring could be dissabled by anchoring manually:
+Parts of the auto-anchoring could be dissabled by anchoring manually:
 
     mgrep -b "^Warning" -e "ignored\.$"
 
@@ -27,7 +27,7 @@ Will be auto-anchored like this:
 
     mgrep -b "^Warning.*$" -e "^.*ignored\.$"
 
-Successive lines could be matched:
+Consecutive lines could be matched by providing several time the same switch:
 
     mgrep -b "Warning" -b "^File" -e "ignored"
 
@@ -45,5 +45,7 @@ The last idea is to provide a simple scripting language:
     ignored\.$
 
 Here, 
-**...** is a shortcut for __*^.*$__
+
+__...__ is a shortcut for __*^.*$__
+
 __?__, __+__, __*__ and __!__ in front of the line have the same meaning as in regular expressions, but they match against new lines.
