@@ -17,7 +17,7 @@ One could give a block body constraint:
 
     mgrep -b "Warning" -i "Unknow (media|mime) type" -e "ignored"
 
-Will match the given text block only if one of it's inners lines match against "^.*Unknow (media|mime) type.*$"
+Will match the given text block only if one of it's inners lines match against "\^.*Unknow (media|mime) type.*$"
 
 Parts of the auto-anchoring could be dissabled by anchoring manually:
 
@@ -31,7 +31,7 @@ Consecutive lines could be matched by providing several time the same switch:
 
     mgrep -b "Warning" -b "^File" -e "ignored"
 
-Will match a text block where the first line match "^.*Warning.*$", the second "^File.*$" and the last "^.*ignored.*$"
+Will match a text block where the first line match "\^.*Warning.*$", the second "\^File.*$" and the last "\^.*ignored.*$"
 
 The last idea is to provide a simple scripting language:
 
