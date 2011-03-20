@@ -17,7 +17,7 @@ One could give a block body constraint:
 
     mgrep -b "Warning" -i "Unknow (media|mime) type" -e "ignored"
 
-Will match the given text block only if one of it's inners lines match against "\^.*Unknow (media|mime) type.*$"
+Will match the given text block only if one of it's inners lines match against "^.\*Unknow (media|mime) type.\*$"
 
 Parts of the auto-anchoring could be dissabled by anchoring manually:
 
@@ -31,23 +31,51 @@ Consecutive lines could be matched by providing several time the same switch:
 
     mgrep -b "Warning" -b "^File" -e "ignored"
 
-Will match a text block where the first line match "\^.*Warning.*$", the second "\^File.*$" and the last "\^.*ignored.*$"
+Will match a text block where the first line match "^.\*Warning.\*$", the second "^File.\*$" and the last "^.\*ignored.\*$"
 
 The last idea is to provide a simple scripting language:
 
     Warning
     ^File
-    ...
+    *
     +MIME type
     *(^Unknow media)|(Bad file type)
     !Configuring NAT
-    ...
+    +
     ignored\.$
 
 Here, 
 
-__...__ is a shortcut for
-
-    *^.*$
-
 __?__, __+__, __*__ and __!__ in front of the line have the same meaning as in regular expressions, but they match against new lines.
+
+So, the following script match a text block which follow thoses rules:
+
+The first line match
+
+    ^.*Warning.*$
+
+The second
+
+    ^File.*$
+
+Followed by zero or many lines
+
+Followed by one or many lines matching
+
+    ^MIME type.*$
+
+Followed by zero or many lines matching
+
+    (^Unknow media.*$)|(^.*Bad file type.*$)
+
+Followed by any line not matching
+
+    ^.*Configuring NAT.*$
+
+Followed by one or many lines
+
+Finally, the last line in the pattern should match
+
+    ^.*ignored\.$
+
+That's it, let's back to work!
